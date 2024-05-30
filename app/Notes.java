@@ -3,29 +3,31 @@ import java.util.Scanner;
 
 public class Notes {
 
-	private class Note {
+	// instances
+	static ArrayList<Integer> numberArray = new ArrayList<>();
+	static ArrayList<String> titleArray = new ArrayList<>();
+	static Scanner scan = new Scanner(System.in);
+	static String noteTitle;
 
-		private String title;
-		private int number;
+	// Constructor
+	public Notes() {
+		// No initialization needed here for now
+	}
 
-		public Note(String title, int number) {
-			this.title = title;
-			this.number = number;
-		}
+	/**
+	 * METHOD
+	 * Create a new note
+	 */
+	public void createNote() {
+		System.out.print("Enter your note title: ");
+		Notes.noteTitle = Notes.scan.nextLine();
+		Notes.titleArray.add(Notes.noteTitle); // Add the note title to the titleArray
+		System.out.println("Title: " + Notes.noteTitle);
+	}
 
-		public String getTitle() {
-			return title;
-		}
-
-		public int number() {
-			return number;
-		}
-
-		// ArrayList to score notes
-		private ArrayList<Note> noteList = new ArrayList<>();
-
-		public void addNote() {
-
+	public void seeNotes() {
+		for (int i = 0; i < Notes.titleArray.size(); i++) {
+			System.out.println(Notes.titleArray.get(i));
 		}
 	}
 }
