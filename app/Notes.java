@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class Notes {
 
@@ -58,7 +59,7 @@ public class Notes {
 	}
 
 	public void calculateAvg(ArrayList<Integer> notesList) {
-		System.out.println("\n===== Notes Average =====");
+		System.out.println("\n===== Notes Informations =====");
 
 		if (Notes.notesList.size() != 0) {
 			int sum = 0;
@@ -69,9 +70,46 @@ public class Notes {
 
 			double avg = (double) sum / Notes.notesList.size();
 
-			System.out.println("Note average = " + avg);
+			System.out.println("Note average : " + avg);
 		} else {
 			System.out.println("There is no notes to display !");
 		}
 	}
+
+	public void calculateSum(ArrayList<Integer> notesList) {
+		System.out.println("\n===== Notes Informations =====");
+
+		if (Notes.notesList.size() != 0) {
+			int sum = 0;
+
+			for (int note : Notes.notesList) {
+				sum += note;
+			}
+
+			System.out.println("Notes sum : " + sum);
+		} else {
+			System.out.println("There is no notes to display !");
+		}
+	}
+
+	public void calculateMax(ArrayList<Integer> notesList) {
+		System.out.println("\n===== Notes Informations =====");
+
+		if (Notes.notesList.size() != 0) {
+			System.out.println("Maximum note : " + Collections.max(notesList));
+		} else {
+			System.out.println("There is no notes to display !");
+		}
+	}
+
+	public void calculateMin(ArrayList<Integer> notesList) {
+		System.out.println("\n===== Notes Informations =====");
+
+		if (Notes.notesList.size() != 0) {
+			System.out.println("Mininum note : " + Collections.min(notesList));
+		} else {
+			System.out.println("There is no notes to display !");
+		}
+	}
+
 }
