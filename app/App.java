@@ -16,7 +16,8 @@ public class App {
 			System.out.println("1. Add a new note");
 			System.out.println("2. Delete a note");
 			System.out.println("3. See all existing notes");
-			System.out.println("4. Quit");
+			System.out.println("4. Caluculate Average of notes");
+			System.out.println("5. Quit");
 
 			// Ask user the menu he want to go in
 			System.out.print("\nGo menu : ");
@@ -34,8 +35,10 @@ public class App {
 				case 3:
 					myNote.seeNotes();
 					break;
-
 				case 4:
+					myNote.calculateAvg(myNote.notesList);
+					break;
+				case 5:
 					System.out.println("Exiting...");
 					System.exit(0);
 					break;
