@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Collections;
+import java.util.InputMismatchException;
 
 public class Notes {
 
@@ -17,34 +18,49 @@ public class Notes {
 	public void createNote() {
 		System.out.println("\n===== New note =====");
 		System.out.print("\nEnter your note number: ");
-		Notes.noteNumber = Notes.scan.nextInt();
-		Notes.notesList.add(Notes.noteNumber);
+
+		try {
+			Notes.noteNumber = Notes.scan.nextInt();
+			Notes.notesList.add(Notes.noteNumber);
+		} catch (InputMismatchException e) {
+			System.err.println("ERROR : Wrong input !");
+			scan.next();
+		}
 	}
 
 	public void deleteNote() {
 		System.out.println("\n===== Delete note =====");
-
 		System.out.println("Do you want to see all of the existings note ? (y/n) : ");
-		String userValidation = scan.nextLine();
-		if (userValidation == "y") {
-			this.seeNotes();
-			System.out.print("\nEnter the number of the note you want to delete : ");
-			int noteToDeleteNumber = scan.nextInt();
-			if (notesList.contains(noteToDeleteNumber)) {
-				Notes.notesList.remove(noteToDeleteNumber);
-			} else {
-				System.out.println("There is no note having this number");
+		try {
+			String userValidation = scan.nextLine();
+			if (userValidation == "y") {
+				this.seeNotes();
+				System.out.print("\nEnter the number of the note you want to delete : ");
+				int noteToDeleteNumber = scan.nextInt();
+
+				if (notesList.contains(noteToDeleteNumber)) {
+					Notes.notesList.remove(noteToDeleteNumber);
+				} else {
+					System.out.println("There is no note having this number");
+				}
+
+			} else
+
+			{
+				System.out.print("\nEnter the number of the note you want to delete : ");
+				int noteToDeleteNumber = scan.nextInt();
+				if (notesList.contains(noteToDeleteNumber)) {
+					Notes.notesList.remove(noteToDeleteNumber);
+				} else {
+					System.out.println("There is no note having this number");
+				}
 			}
 
-		} else {
-			System.out.print("\nEnter the number of the note you want to delete : ");
-			int noteToDeleteNumber = scan.nextInt();
-			if (notesList.contains(noteToDeleteNumber)) {
-				Notes.notesList.remove(noteToDeleteNumber);
-			} else {
-				System.out.println("There is no note having this number");
-			}
+		} catch (InputMismatchException e) {
+			System.err.println("ERROR : Wrong input !");
+			scan.next();
 		}
+
 	}
 
 	public void seeNotes() {

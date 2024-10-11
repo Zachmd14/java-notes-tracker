@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class App {
 	public static void main(String[] args) {
@@ -8,6 +9,8 @@ public class App {
 
 		// Initialize the Scanner method
 		Scanner scan = new Scanner(System.in);
+
+		System.out.println("test");
 
 		System.out.println("\n===== Grades Tracker App =====");
 
@@ -23,70 +26,76 @@ public class App {
 			System.out.print("\nGo menu : ");
 			int menuInput = scan.nextInt();
 
-			switch (menuInput) {
-				case 1:
-					myNote.createNote();
-					break;
+			try {
+				switch (menuInput) {
+					case 1:
+						myNote.createNote();
+						break;
 
-				case 2:
-					myNote.deleteNote();
-					break;
+					case 2:
+						myNote.deleteNote();
+						break;
 
-				case 3:
-					myNote.seeNotes();
-					break;
-				case 4:
-					boolean infoCheck = false;
-					while (!infoCheck) {
-						System.out.println("\n What do you want to know ? : ");
-						System.out.println("1. Maximum note");
-						System.out.println("2. Minimum note");
-						System.out.println("3. Average of notes");
-						System.out.println("4. Sum of all notes");
-						System.out.println("5. Quit");
-						int infoInput = scan.nextInt();
+					case 3:
+						myNote.seeNotes();
+						break;
+					case 4:
+						boolean infoCheck = false;
+						while (!infoCheck) {
+							System.out.println("\nWhat do you want to know ? : ");
+							System.out.println("1. Maximum note");
+							System.out.println("2. Minimum note");
+							System.out.println("3. Average of notes");
+							System.out.println("4. Sum of all notes");
+							System.out.println("5. Quit");
+							int infoInput = scan.nextInt();
 
-						switch (infoInput) {
-							case 1:
-								myNote.calculateMax(myNote.notesList);
-								infoCheck = true;
-								break;
+							switch (infoInput) {
+								case 1:
+									myNote.calculateMax(myNote.notesList);
+									infoCheck = true;
+									break;
 
-							case 2:
-								myNote.calculateMin(myNote.notesList);
-								infoCheck = true;
-								break;
+								case 2:
+									myNote.calculateMin(myNote.notesList);
+									infoCheck = true;
+									break;
 
-							case 3:
-								myNote.calculateAvg(myNote.notesList);
-								infoCheck = true;
-								break;
+								case 3:
+									myNote.calculateAvg(myNote.notesList);
+									infoCheck = true;
+									break;
 
-							case 4:
-								myNote.calculateSum(myNote.notesList);
-								infoCheck = true;
-								break;
+								case 4:
+									myNote.calculateSum(myNote.notesList);
+									infoCheck = true;
+									break;
 
-							case 5:
-								System.out.println("Exiting...");
-								infoCheck = true;
-								break;
+								case 5:
+									System.out.println("Exiting...");
+									infoCheck = true;
+									break;
 
-							default:
-								infoCheck = true;
-								break;
+								default:
+									infoCheck = true;
+									break;
+							}
 						}
-					}
 
-					break;
-				case 5:
-					System.out.println("Exiting...");
-					System.exit(0);
-					break;
+						break;
+					case 5:
+						System.out.println("Exiting...");
+						System.exit(0);
+						break;
 
-				default:
-					break;
+					default:
+						break;
+				}
+			} catch (InputMismatchException e) {
+				System.err.println("ERROR : Wrong input !");
+				scan.next();
 			}
+
 		}
 
 	}
